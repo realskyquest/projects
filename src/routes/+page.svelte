@@ -10,7 +10,7 @@
 	let currentPost = { name: '#home' };
 
 	onMount(() => {
-		const url = 'https://realskyquest.github.io/posts/posts.json';
+		const url = 'https://raw.githubusercontent.com/realskyquest/posts/main/posts.json';
 		fetchJson(url).then((data) => {
 			posts = data.posts;
 		});
@@ -94,6 +94,7 @@
 
 					{#if posts.length > 0}
 						<a
+							class="text-center"
 							href="{base}/?name={posts[0].name}&link={posts[0].link}#post"
 							on:click={() => {
 								currentPost = posts[0];
@@ -102,14 +103,9 @@
 								}
 							}}
 						>
-							<div class="h-[180px] pointer-events-none">
-								<iframe
-									id="post"
-									class="w-full h-full rounded-lg"
-									title="post"
-									src={posts[0].link}
-								/>
-							</div>
+							<h1 class="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
+  								{removeHTML(posts[0].name)}
+							</h1>
 						</a>
 					{:else}
 						<p class="text-center">No posts found</p>
